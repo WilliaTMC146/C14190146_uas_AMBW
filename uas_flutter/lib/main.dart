@@ -30,7 +30,6 @@ class _MyAppState extends State<MyApp> {
 
   List listdata = [];
 
-  // Fetch content from the json file
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/news.json');
     final data = await json.decode(response);
@@ -56,7 +55,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   readJson();
                 },
-                child: Text("Load Json")),
+                child: Text("Load News")),
             listdata.isNotEmpty
                 ? Expanded(
                     child: ListView.builder(
@@ -64,10 +63,18 @@ class _MyAppState extends State<MyApp> {
                         itemBuilder: (context, index) {
                           return Card(
                             margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                            child: ListTile(
-                              leading: Text(listdata[index]["title"]),
-                              title:
-                                  Image.network(listdata[index]["thumbnail"]),
+                            child: Container(
+                              height: 90,
+                              child: Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: ListTile(
+                                  leading: Image.network(
+                                      listdata[index]["thumbnail"]),
+                                  title: Text(listdata[index]["title"]),
+                                  subtitle:
+                                      Text(listdata[index]["description"]),
+                                ),
+                              ),
                             ),
                           );
                         }))

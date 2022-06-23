@@ -4,15 +4,13 @@ class News {
   String description;
   String thumbnail;
   String link;
-  String image;
 
   News(
       {required this.title,
       required this.pubDate,
       required this.description,
       required this.thumbnail,
-      required this.link,
-      required this.image});
+      required this.link});
 
   factory News.fromJson(Map<String, dynamic> json) {
     return News(
@@ -21,7 +19,6 @@ class News {
       description: json['description'],
       thumbnail: json['thumbnail'],
       link: json['link'],
-      image: json['image'],
     );
   }
 }
