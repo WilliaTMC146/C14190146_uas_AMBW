@@ -1,29 +1,23 @@
-class cData {
-  String cid;
-  String cavatar;
-  String cnama;
-  String calamat;
-  String cemail;
-  String cpekerjaan;
-  String cquote;
+class News {
+  String title;
+  String pubDate;
+  String description;
+  String thumbnail;
+  String link;
 
-  cData(
-      {required this.cid,
-      required this.cavatar,
-      required this.cnama,
-      required this.calamat,
-      required this.cemail,
-      required this.cpekerjaan,
-      required this.cquote});
+  News(
+      {required this.title,
+      required this.pubDate,
+      required this.description,
+      required this.thumbnail,
+      required this.link});
 
-  factory cData.fromJson(Map<String, dynamic> json) {
-    return cData(
-        cid: json['id'],
-        cavatar: json['avatar'],
-        cnama: json['nama'],
-        calamat: json['alamat'],
-        cemail: json['email'],
-        cpekerjaan: json['pekerjaan'],
-        cquote: json['quote']);
+  factory News.fromJson(Map<String, dynamic> json) {
+    return News(
+        title: json['title'],
+        pubDate: json['avatar'],
+        description: json['nama'],
+        thumbnail: json['alamat'],
+        link: json['email']);
   }
 }
