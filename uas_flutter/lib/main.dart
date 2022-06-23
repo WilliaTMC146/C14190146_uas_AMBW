@@ -30,6 +30,7 @@ class _MyAppState extends State<MyApp> {
   // }
 
   List listdata = [];
+  List favorite = [];
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/news.json');
@@ -87,6 +88,9 @@ class _MyAppState extends State<MyApp> {
                                         pubDate: listdata[index]["pubDate"],
                                       );
                                     }));
+                                  },
+                                  onLongPress: () {
+                                    favorite.add(index);
                                   },
                                 ),
                               ),
