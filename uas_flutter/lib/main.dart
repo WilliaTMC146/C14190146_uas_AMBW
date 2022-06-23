@@ -57,6 +57,7 @@ class _MyAppState extends State<MyApp> {
                   readJson();
                 },
                 child: Text("Load News")),
+            ElevatedButton(onPressed: () {}, child: Text("Favorite")),
             listdata.isNotEmpty
                 ? Expanded(
                     child: ListView.builder(
