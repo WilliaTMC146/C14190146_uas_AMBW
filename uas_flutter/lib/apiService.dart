@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 
 class Service {
   Future<List<News>> getAllData() async {
-    final response = await http.get(
-        Uri.parse("https://api-berita-indonesia.vercel.app/cnbc/terbaru/"));
+    final response = await http
+        .get(Uri.parse("https://api-berita-indonesia.vercel.app/cnbc/terbaru"));
     if (response.statusCode == 200) {
       //200 = success get
       List jsonResponse = json.decode(response.body);
@@ -19,7 +19,7 @@ class Service {
   Future postData(String title, String pubDate, String description,
       String thumbnail, String link) async {
     final response = await http.post(
-        Uri.parse("https://api-berita-indonesia.vercel.app/cnbc/terbaru/"),
+        Uri.parse("https://api-berita-indonesia.vercel.app/cnbc/terbaru"),
         body: {
           "title": title,
           "pubDate": pubDate,

@@ -1,4 +1,11 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:uas_flutter/detailPage.dart';
+import 'apiService.dart';
+import 'dataClass.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +19,62 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  // Service serviceApi = Service();
+  // late Future<List<News>> listdata;
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   listdata = serviceApi.getAllData();
+  // }
+
+  List listdata = [];
+
+  // Fetch content from the json file
+  Future<void> readJson() async {
+    final String response = await rootBundle.loadString('assets/news.json');
+    final data = await json.decode(response);
+    setState(() {
+      listdata = data["posts"];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      theme: ThemeData(
+          primarySwatch: Colors.lime,
+          scaffoldBackgroundColor: Color.fromARGB(255, 204, 204, 204)),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Berita Uas AMBW"),
+        ),
+        body: Column(
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  readJson();
+                },
+                child: Text("Load Json")),
+            listdata.isNotEmpty
+                ? Expanded(
+                    child: ListView.builder(
+                        itemCount: listdata.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
+                            child: ListTile(
+                              leading: Text(listdata[index]["title"]),
+                              title:
+                                  Image.network(listdata[index]["thumbnail"]),
+                            ),
+                          );
+                        }))
+                : Container()
+          ],
+        ),
+      ),
+    );
   }
 }
