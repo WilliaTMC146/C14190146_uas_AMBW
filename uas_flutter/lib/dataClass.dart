@@ -22,3 +22,18 @@ class News {
     );
   }
 }
+
+class fav {
+  String title;
+  String pubDate;
+  String description;
+  String thumbnail;
+  String link;
+
+  fav(
+      {required this.title,
+      required this.pubDate,
+      required this.description,
+      required this.thumbnail,
+      required this.link});
+}
