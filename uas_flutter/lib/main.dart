@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart';
 import 'package:uas_flutter/detailPage.dart';
 import 'apiService.dart';
 import 'dataClass.dart';
@@ -73,6 +74,19 @@ class _MyAppState extends State<MyApp> {
                                   title: Text(listdata[index]["title"]),
                                   subtitle:
                                       Text(listdata[index]["description"]),
+                                  onTap: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return detailPage(
+                                        title: listdata[index]["title"],
+                                        description: listdata[index]
+                                            ["description"],
+                                        thumbnail: listdata[index]["thumbnail"],
+                                        link: listdata[index]["link"],
+                                        pubDate: listdata[index]["pubDate"],
+                                      );
+                                    }));
+                                  },
                                 ),
                               ),
                             ),
